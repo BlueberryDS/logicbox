@@ -1,7 +1,6 @@
 import random
 
-unlocked_count = 0
-story = "Mathematics is a place where you can do things that you can't do in the real world".split(" ");
+locked_count = 0
 
 
 class LogicBox:
@@ -11,7 +10,7 @@ class LogicBox:
         pass
 
     def flip(self):
-        self.current_side = random.randint(0, 6)
+        self.current_side = random.randint(0, 5)
         return self.current_side
 
     def is_unlocked(self):
@@ -19,6 +18,8 @@ class LogicBox:
 
 
 class InternalLogicBox(LogicBox):
+    opened = False
+
     def get_message(self):
         pass
 
@@ -28,12 +29,12 @@ class InternalLogicBox(LogicBox):
 
 class OmmiBox(InternalLogicBox):
     def interact(self, action):
-        if unlocked_count == 0:
+        if locked_count == 1:
             return "UNLOCKED"
         return "STILL_LOCKED"
 
     def is_unlocked(self):
-        return unlocked_count == 0
+        return locked_count == 1
 
     def get_message(self):
         return "This logic box will automatically unlock when all " \
@@ -45,7 +46,7 @@ class OmmiBox(InternalLogicBox):
 
 
 class ComboBox(InternalLogicBox):
-    taps_wanted = random.randint()
+    taps_wanted = random.randint(1, 6)
     wanted_side = 0
 
     def interact(self, action):
@@ -55,7 +56,7 @@ class ComboBox(InternalLogicBox):
         else:
             if self.wanted_side == self.current_side:
                 print("You've tapped the correct side!")
-                self.wanted_side = random.randint(0, 6)
+                self.wanted_side = random.randint(0, 5)
                 self.taps_wanted -= 1
                 return str(self.wanted_side)
             else:
@@ -76,12 +77,74 @@ class ComboBox(InternalLogicBox):
         return "COMBO"
 
 
+logic_box_gotten = False
+
+
+def get_new_logic_box():
+    global logic_box_gotten, locked_count
+
+    if logic_box_gotten:
+        print("Cannot get more than one logic box!")
+        return None
+
+    logic_box_gotten = True
+    locked_count += 1
+
+    return ComboBox()
+
+
 class Unlocker:
+    contents = [
+                   [ComboBox(), ComboBox()],
+                   [OmmiBox(), ComboBox(), ComboBox()],
+                   [ComboBox()]
+               ]
+
+    story = ["Mathematics is a place", " where you can create", " things that are impossible ",
+             " to create in reality"]
+
+    def __init__(self):
+        random.shuffle(self.contents)
+
     def unbox(self, box):
+        global locked_count
+        if box.opened:
+            print("You have already opened this box before!")
+            return []
         if box.is_unlocked():
             print("You have just unlocked this box!")
+            box.opened = True
+            locked_count -= 1
+
+            if len(self.contents):
+                ret = self.contents[0]
+                self.contents = self.contents[1:]
+                locked_count += len(ret)
+                print("Now you have " + str(locked_count) + "boxes to open!")
+                return ret
+            else:
+                print("This box was empty!")
+                print("You've received part of a quote: " + self.story[0])
+                self.story = self.story[1:]
+                return []
         else:
             print("The box you just passed in is still locked. Can not unbox!")
+            return []
+
+
+unlocker_gotten = False
+
+
+def get_new_unlocker():
+    global unlocker_gotten
+
+    if unlocker_gotten:
+        print("Can only get one unlocker!")
+        return None
+
+    unlocker_gotten = True
+
+    return Unlocker()
 
 
 class Analyser:
@@ -90,5 +153,27 @@ class Analyser:
         return box.get_type()
 
 
+analyser_gotten = False
+
+
 def get_new_analyser():
+    global analyser_gotten
+
+    if analyser_gotten:
+        print("Can only get one Analyser!")
+        return None
+
+    analyser_gotten = True
+
     return Analyser()
+
+
+def is_game_done():
+    global locked_count
+
+    if locked_count > 0:
+        print("There are still " + str(locked_count) + " boxes to unlock!")
+        return False
+
+    print("Game is done!")
+    return True
