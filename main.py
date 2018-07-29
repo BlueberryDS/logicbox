@@ -1,13 +1,21 @@
-from logic import *
+# Master of The Universe - Kavin The God
+r = []
+while True:
+    num_1 = int(input("What is number 1"))
+    num_2 = int(input("What is number 2"))
 
-#Start your program here
+    sum_1 = num_1 + num_2
 
-a = 1
+    print(sum_1)
 
-def b():
-    global a
-    a += 2
-    print( " " + str(a))
+    condition = sum_1 == 100
+    if condition:
+        print("3!")
+        print("2!")
+        print("1!")
+        print("KABOOM!!!")
 
-b()
-print(a)
+    r = r + [sum_1]
+    cond2 = sum_1 == 0
+    if cond2:
+        print(r)
