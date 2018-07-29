@@ -8,6 +8,3 @@ def b():
     global a
     a += 2
     print( " " + str(a))
-
-b()
-print(a)
