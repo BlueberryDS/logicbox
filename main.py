@@ -1,13 +1,17 @@
-from logic import *
+list_of_results = []
+while True:
+    number_1 = int (input ("What is number 1 "))
+    number_2 = int (input ("What is number 2 "))
+    result = number_1 + number_2
 
-#Start your program here
+    list_of_results = list_of_results
+    print(result)
 
-a = 1
 
-def b():
-    global a
-    a += 2
-    print( " " + str(a))
+    condition = result == 100
 
-b()
-print(a)
+    if
+    print(number_1 + number_2)
+    if number_1 + number_2 >=100:
+        print ("3, 2, 1")
+        print ("Kaboom!")
