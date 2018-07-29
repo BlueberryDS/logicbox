@@ -1,13 +1,7 @@
-from logic import *
+while True:
+    number1 = int(input("what is the number 1 "))
+    number2 = int(input("what is the number 2 "))
+    print(number1 + number2)
 
-#Start your program here
-
-a = 1
-
-def b():
-    global a
-    a += 2
-    print( " " + str(a))
-
-b()
-print(a)
+    if number1 + number2 == 100:
+        print("boom")
