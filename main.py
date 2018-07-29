@@ -7,12 +7,15 @@ results = []
 while True:
     num1 = int(input("What is the first number? "))
     num2 = int(input("What is the second number? "))
-    sum = num1 + num2
-    results = results + [sum]
-    print(sum)
-    
-    if (sum == 100)
+    sums = num1 + num2
+    results = results + [sums]
+    print(sums)
+
+    condition = sums == 100
+    condition2 = sums == 0
+
+    if condition:
         print("Boom!")
 
-    if (sum == 0)
+    if condition2:
         print(results)
