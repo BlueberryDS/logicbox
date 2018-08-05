@@ -1,5 +1,5 @@
 # Master of The Universe - Kavin The God
-r = []
+Entered_Numbers = []
 while True:
     num_1 = int(input("What is number 1"))
     num_2 = int(input("What is number 2"))
@@ -8,14 +8,12 @@ while True:
 
     print(sum_1)
 
-    condition = sum_1 == 100
-    if condition:
+    if sum_1 == 100:
         print("3!")
         print("2!")
         print("1!")
         print("KABOOM!!!")
 
-    r = r + [sum_1]
-    cond2 = sum_1 == 0
-    if cond2:
-        print(r)
+    Entered_Numbers = Entered_Numbers + [num_1, num_2]
+    if sum_1 == 0:
+        print(Entered_Numbers)
