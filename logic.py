@@ -153,7 +153,7 @@ class Analyser:
         return box.get_type()
 
 
-analyser_gotten = False
+    analyser_gotten = False
 
 
 def get_new_analyser():
