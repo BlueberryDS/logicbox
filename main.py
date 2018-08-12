@@ -1,13 +1,18 @@
 from logic import *
 
-#Start your program here
+#
+# This is a program to solve logic box
+#
+box = get_new_logic_box()
+analyser = get_new_analyser()
+unlocker = get_new_unlocker()
 
-a = 1
+print(analyser.analyse(box))
 
-def b():
-    global a
-    a += 2
-    print( " " + str(a))
-
-b()
-print(a)
+type_of_box = analyser.analyse(box)
+if type_of_box == "COMBO":
+    while not box.is_unlocked():
+        box.flip()
+        box.interact("TAP")
+    content = unlocker.unbox(box)
+    print(content)
