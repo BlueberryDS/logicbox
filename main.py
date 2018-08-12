@@ -10,4 +10,3 @@ def b():
     print( " " + str(a))
 
 b()
-print(a)
