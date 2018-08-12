@@ -1,7 +1,3 @@
-from logic import *
-
-#Start your program here
-
 results = []
 
 while True:
