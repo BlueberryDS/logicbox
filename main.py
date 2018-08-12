@@ -1,8 +1,9 @@
 # Master of The Universe - Kavin The God
 Entered_Numbers = []
-while True:
-    num_1 = int(input("What is number 1"))
-    num_2 = int(input("What is number 2"))
+Continue = True
+while Continue:
+    num_1 = int(input("What is number 1: "))
+    num_2 = int(input("What is number 2:  "))
 
     sum_1 = num_1 + num_2
 
@@ -17,3 +18,4 @@ while True:
     Entered_Numbers = Entered_Numbers + [num_1, num_2]
     if sum_1 == 0:
         print(Entered_Numbers)
+        Continue = False
