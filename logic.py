@@ -100,8 +100,8 @@ class Unlocker:
                    [ComboBox()]
                ]
 
-    story = ["Mathematics is a place", " where you can create", " things that are impossible ",
-             " to create in reality"]
+    story = ["You miss", " 100%", " of the shots ",
+             " you don't take!"]
 
     def __init__(self):
         random.shuffle(self.contents)
