@@ -1,13 +1,18 @@
 from logic import *
 
-#Start your program here
+#
+# this is a project to solve a single logic box
+#
 
-a = 1
+box = get_new_logic_box()
+analyser = get_new_analyser()
+unlocker = get_new_unlocker()
 
-def b():
-    global a
-    a += 2
-    print( " " + str(a))
+type = analyser.analyse(box)
+if type == "COMBO":
+    while not box.is_unlocked():
+        box.flip()
+        box.interact("TAP")
 
-b()
-print(a)
+    results = unlocker.unbox(box)
+    print(results)
