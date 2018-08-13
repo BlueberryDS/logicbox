@@ -7,6 +7,8 @@ from logic import *
 box = get_new_logic_box()
 analyser = get_new_analyser()
 unlocker = get_new_unlocker()
+c=0
+o=0
 
 type = analyser.analyse(box)
 
@@ -17,6 +19,22 @@ if type == "COMBO":
         box.flip()
         box.interact("TAP")
 
-    results = unlocker.unbox(box)
+    result = unlocker.unbox(box)
+    boxlist = result
+    print(result)
 
-    print(results)
+while not is_game_done():
+    if analyser.analyse(boxlist[c]) == "COMBO":
+        while not boxlist[c].is_unlocked():
+            boxlist[c].flip()
+            boxlist[c].interact("TAP")
+
+        boxlist += unlocker.unbox(boxlist[c])
+    if analyser.analyse(boxlist[c]) == "OMNI":
+        omniNum = c
+        o = 1
+    if o == 1:
+        omni = unlocker.unbox(boxlist[omniNum])
+    c += 1
+
+print("IM DONE!!!!")
